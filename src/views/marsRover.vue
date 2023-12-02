@@ -5,11 +5,12 @@ import { ref, computed } from 'vue';
 
 const imageNumber = document.getElementById('numberOfImages');
 const date = ref(new Date());
-const minDate = computed(() => new Date(2021, 2, 18)); // 02/18/2021 Perseverance Landing Date
+const minDate = computed(() => new Date(2021, 1, 18)); // 02/18/2021 Perseverance Landing Date
 const maxDate = computed(() => new Date()); // Today's date
 const images = ref([]);
 let pageNumber = 1;
 let correctDate = '';
+let numPhotosTaken = 0;
 
 async function getPerserveranceImages(date) {
   const apiUrl = `https://mars-photos.herokuapp.com/api/v1/rovers/Perseverance/photos?earth_date=${date}&page=${pageNumber}`;
@@ -22,6 +23,18 @@ async function getPerserveranceImages(date) {
     imageNumber.innerText = 'Perseverance didn\'t take any photos on this date. Try another date.';
   }
   images.value = data.photos;
+  let sol = data.photos[0].sol;
+  await getTotalNumberOfImages(sol);
+  imageNumber.innerText = `Perseverance took ${data.photos.length} photos on ${correctDate}.`;
+}
+
+async function getTotalNumberOfImages(solFromImage) {
+  const apiUrl = `https://mars-photos.herokuapp.com/api/v1/manifests/Perseverance`;
+  let resp = await fetch(apiUrl);
+  let data = await resp.json();
+  numPhotosTaken = data.photo_manifest.photos[solFromImage].total_photos;
+  console.log(numPhotosTaken);
+  imageNumber.innerText = `Perseverance took ${numPhotosTaken} photos on ${correctDate}.`;
 }
 
 function dateCorrection(date) {
@@ -51,12 +64,11 @@ function handleNextPage() {
   <vue-date-picker :min-date="minDate" :max-date="maxDate" dark teleport-center :hide-navigation="['time', 'minutes', 'hours', 'seconds']" id="datePicker" v-model="date" />
 </div>
   <button class="button-shadow-border button-shadow" @click="handleSearchImages">Search Images</button>
-  <h2 v-if="images.length > 0" id="numberOfImages">Perseverance took {{ images.length }} photos on {{ correctDate }}.</h2>  
+  <h2 id="numberOfImages">Perseverance took {{ numPhotosTaken }} photos on {{ correctDate }}.</h2>  
   <div id="images">
     <img v-for="image in images" :key="image.id" :src="image.img_src" :title="'Taken on sol #' + image.sol" class="perseveranceImage" />
   </div>
   <button class="button-shadow-border button-shadow" id="moreImages" @click="handleNextPage" v-if="images.length > 0">More Images</button>
-  <p id="noImgsMessage" display="hidden">No more images to display! Try another date.</p>
 </div>
 </section>
 
