@@ -59,7 +59,7 @@ const handleSearchImages = async () => {
 
 const handleNextPage = () => {
   pageNumber++;
-  getPerserveranceImages(correctDate);
+  handleSearchImages();
 };
 
 </script>
@@ -95,7 +95,7 @@ const handleNextPage = () => {
         class="button-shadow-border button-shadow"
         id="moreImages"
         @click="handleNextPage"
-        v-if="images.value"
+        v-if="images"
       >
         More Images
       </button>
