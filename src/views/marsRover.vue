@@ -1,7 +1,12 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+// import { addMonths, getMonth, getYear, subMonths } from 'date-fns';
 
-const date = ref();
+
+const imageNumber = document.getElementById('numberOfImages');
+const date = ref(new Date());
+const minDate = computed(() => new Date(2021, 2, 18)); // 02/18/2021 Perseverance Landing Date
+const maxDate = computed(() => new Date()); // Today's date
 const images = ref([]);
 let pageNumber = 1;
 let correctDate = '';
@@ -14,7 +19,7 @@ async function getPerserveranceImages(date) {
   console.log(data.photos);
   if (data.photos.length === 0) {
     document.getElementById('moreImages').style.display = 'none';
-    document.getElementById('noImgsMessage').style.display = 'block';
+    imageNumber.innerText = 'Perseverance didn\'t take any photos on this date. Try another date.';
   }
   images.value = data.photos;
 }
@@ -40,13 +45,13 @@ function handleNextPage() {
 </script>
 
 <template main>
-
   <section class="perseveranceWrapper">
 <div class="searchSection">
   <div id="datePickerWrapper">
-  <vue-date-picker dark teleport-center :hide-navigation="['time', 'minutes', 'hours', 'seconds']" id="datePicker" v-model="date" />
+  <vue-date-picker :min-date="minDate" :max-date="maxDate" dark teleport-center :hide-navigation="['time', 'minutes', 'hours', 'seconds']" id="datePicker" v-model="date" />
 </div>
   <button class="button-shadow-border button-shadow" @click="handleSearchImages">Search Images</button>
+  <h2 v-if="images.length > 0" id="numberOfImages">Perseverance took {{ images.length }} photos on {{ correctDate }}.</h2>  
   <div id="images">
     <img v-for="image in images" :key="image.id" :src="image.img_src" :title="'Taken on sol #' + image.sol" class="perseveranceImage" />
   </div>
@@ -70,9 +75,12 @@ function handleNextPage() {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 90%;
-  padding: 0.5rem;
-  z-index: 0;
+  width: 100%;
+  padding: 0;
+  padding-top: .5rem;
+  z-index: 1;
+  background-image: url(../assets/starryOverlay.png);
+  background-size: 3rem 3rem;
 }
 
 div.searchSection{
@@ -80,7 +88,8 @@ div.searchSection{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 90%;
+  max-width: 100%;
+  z-index: 2;
 }
 
 div#images {
@@ -88,11 +97,11 @@ div#images {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 90%;
+  max-width: 100%;
 }
 
 #images img {
-  max-width: 90%;
+  max-width: 80%;
   border-radius: 10px;
   margin-bottom: 2rem;
 }
@@ -100,6 +109,7 @@ div#images {
 #datePicker {
   display: flex;
   justify-content: center;
+  z-index: 1;
 }
 
 .button-shadow {
