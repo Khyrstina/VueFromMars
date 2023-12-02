@@ -6,8 +6,8 @@ import { RouterLink, RouterView } from 'vue-router';
 
   <div class="wrapper">
     <header>
-    <video poster="./assets/Perseverance.webp" autoplay muted loop id="marsAnimation">
-      <source src="./assets/marsMaven.mp4" type="video/mp4">
+      <video poster="./assets/Perseverance.webp"  autoplay muted loop id="marsAnimation">
+      <source src="./assets/RotatingMars.mp4" type="video/mp4">
     </video>
     <nav>
       <RouterLink to="/">Home</RouterLink>
@@ -72,6 +72,7 @@ nav {
   position: relative;
   max-width: 100%;
   height: auto;
+  z-index: 1;
 }
 
 nav a.router-link-exact-active {
