@@ -67,8 +67,7 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: rgb(1,12,33);
-  background: linear-gradient(42deg, rgba(1,12,33,1) 24%, rgba(1,45,141,1) 100%);
+  background: #000609;
   line-height: 1.6;
   font-family:
     nasalization,
