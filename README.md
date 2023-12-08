@@ -1,41 +1,37 @@
-# vue-from-mars
+# VueFromMars
+This is a Vue.js project that uses the Vite build tool. The project fetches data from the Mars Rover API for multiple Rovers and displays them in different views. Also included are about views for each rover you can search for.
 
-This template should help get you started developing with Vue 3 in Vite.
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine.
 
-## Recommended IDE Setup
+## Prerequisites
+Node.js
+npm
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+## Installing
+### Clone the repository:
+```
+  git clone <repository-url>
+```
+### Navigate to the project directory:
+```
+  cd <project-name>
+```
+### Install dependencies:
+```
+  npm install
+```
+### Running the Application
+```
+  npm run dev
 ```
 
-### Compile and Hot-Reload for Development
+## Built With
+[Vue.js](https://vuejs.org/)  
+[Vite](https://vitejs.dev/)
 
-```sh
-npm run dev
-```
+## Acknowledgments
+Thanks to [Corin Cerami](https://github.com/corincerami) for creating the Mars Photo API project and to NASA for kindly making the data available.
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Notes
+Please replace <repository-url> and <project-name> with the actual repository URL and project name.
