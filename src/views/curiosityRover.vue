@@ -44,7 +44,7 @@ const getEarthDaysSinceLanding = async () => {
     console.log(earthDaysText.value);
   } else {
     console.log('index not found');
-    earthDaysText.value = `Curiosity  took 0 photos on ${correctDate}.`;
+    earthDaysText.value = `Curiosity  took 0 photos on ${displayDate}.`;
   }
 };
 

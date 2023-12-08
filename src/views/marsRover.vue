@@ -8,6 +8,7 @@ const maxDate = computed(() => new Date()); // Today's date
 const images = ref([]);
 let pageNumber = 1;
 let correctDate = '';
+let displayDate = '';
 let numPhotosTaken = 0;
 let targetSol = 0;
 
@@ -26,6 +27,7 @@ const dateCorrection = (date) => {
   const year = date.getFullYear().toString();
   const correctedDate = `${year}-${month}-${day}`;
   correctDate = correctedDate;
+  displayDate = `${month}/${day}/${year}`;
 };
 
 const getEarthDaysSinceLanding = async () => {
@@ -38,11 +40,11 @@ const getEarthDaysSinceLanding = async () => {
   if (index !== -1) {
     console.log('found index for sol');
     numPhotosTaken = data.photo_manifest.photos[index].total_photos;
-    earthDaysText.value = `Perseverance took ${numPhotosTaken} photos on ${correctDate}.`;
+    earthDaysText.value = `Perseverance took ${numPhotosTaken} photos on ${displayDate}.`;
     console.log(earthDaysText.value);
   } else {
     console.log('index not found');
-    earthDaysText.value = `Perseverance took 0 photos on ${correctDate}.`;
+    earthDaysText.value = `Perseverance took 0 photos on ${displayDate}.`;
   }
 };
 
