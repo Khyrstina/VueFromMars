@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 
 const earthDaysText = ref('');
 const date = ref(new Date());
-const minDate = computed(() => new Date(2021, 1, 18)); // 02/18/2021 Perseverance Landing Date
+const minDate = computed(() => new Date(2012, 7, 6)); // 08/06/2012 Curiosity Landing Date
 const maxDate = computed(() => new Date()); // Today's date
 const images = ref([]);
 let pageNumber = 1;
@@ -13,7 +13,7 @@ let numPhotosTaken = 0;
 let targetSol = 0;
 
 const getPerserveranceImages = async (date) => {
-  const apiUrl = `https://mars-photos.herokuapp.com/api/v1/rovers/Perseverance/photos?earth_date=${date}&page=${pageNumber}`;
+  const apiUrl = `https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?earth_date=${date}&page=${pageNumber}`;
   const resp = await fetch(apiUrl);
   const data = await resp.json();
   console.log(apiUrl);
@@ -32,7 +32,7 @@ const dateCorrection = (date) => {
 
 const getEarthDaysSinceLanding = async () => {
   console.log(targetSol);
-  const apiUrl = `https://mars-photos.herokuapp.com/api/v1/manifests/Perseverance`;
+  const apiUrl = `https://mars-photos.herokuapp.com/api/v1/manifests/curiosity`;
   const resp = await fetch(apiUrl);
   const data = await resp.json();
   const index = data.photo_manifest.photos.findIndex(item => item.sol === targetSol);
@@ -40,11 +40,11 @@ const getEarthDaysSinceLanding = async () => {
   if (index !== -1) {
     console.log('found index for sol');
     numPhotosTaken = data.photo_manifest.photos[index].total_photos;
-    earthDaysText.value = `Perseverance took ${numPhotosTaken} photos on ${displayDate}.`;
+    earthDaysText.value = `Curiosity took ${numPhotosTaken} photos on ${displayDate}.`;
     console.log(earthDaysText.value);
   } else {
     console.log('index not found');
-    earthDaysText.value = `Perseverance took 0 photos on ${displayDate}.`;
+    earthDaysText.value = `Curiosity  took 0 photos on ${displayDate}.`;
   }
 };
 
@@ -67,7 +67,7 @@ const handleNextPage = () => {
 </script>
 
 <template main>
-  <section class="perseveranceWrapper">
+  <section class="curiosityWrapper">
     <div class="searchSection">
       <div id="datePickerWrapper">
         <vue-date-picker
@@ -90,7 +90,7 @@ const handleNextPage = () => {
           :key="image.id"
           :src="image.img_src"
           :title="'Taken on sol #' + image.sol"
-          class="perseveranceImage"
+          class="curiosityImage"
         />
       </div>
       <button

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import marsRover from '../views/marsRover.vue';
+import curiosityRover from '../views/curiosityRover.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/perseverance',
       name: 'perseverance',
       component: marsRover,
+    },
+    {
+      path: '/curiosity',
+      name: 'curiosity',
+      component: curiosityRover,
     },
   ],
 });

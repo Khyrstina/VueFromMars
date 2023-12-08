@@ -1,6 +1,20 @@
 <script setup>
+import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
+
+
+let showSearchDropdown = ref(false);
+let showAboutDropdown = ref(false);
+
+const toggleDropdown = (arg) => {
+  if (arg === 'search') {
+    showSearchDropdown.value = !showSearchDropdown.value;
+  } else if (arg === 'about') {
+    showAboutDropdown.value = !showAboutDropdown.value;
+  }
+};
 </script>
+
 
 <template> 
 
@@ -10,9 +24,23 @@ import { RouterLink, RouterView } from 'vue-router';
       <source src="./assets/RotatingMars.mp4" type="video/mp4">
     </video>
     <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/perseverance">Perseverance</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+      <div class="navMenuItem"><RouterLink to="/">Home</RouterLink></div>
+      <div class="navMenuItem">
+        <a class="toggleForNav" style="text" @click="toggleDropdown('search')" v-bind:class="{ showSearchDropdown }">Search Rover Images</a>
+        <div class="searchDropdown" v-show="showSearchDropdown">
+            <RouterLink to="/perseverance">Perseverance</RouterLink>
+            <RouterLink to="/curiosity">Curiosity</RouterLink>
+            </div>
+      </div>
+      <div class="navMenuItem">
+        <a class="toggleForNav" @click="toggleDropdown('about')" v-bind:class="{ showAboutDropdown }">Learn About A Rover</a>
+        <div class="aboutDropdown" v-show="showAboutDropdown">
+            <RouterLink to="/about">Perseverance</RouterLink>
+            </div>
+      </div>
+
+<!--       <RouterLink to="/perseverance">Perseverance</RouterLink>
+      <RouterLink to="/about">About</RouterLink> -->
     </nav>
     <h1 id="titleString">Vue From Mars</h1>
   </header>
@@ -75,18 +103,39 @@ nav {
   z-index: 1;
 }
 
-nav a.router-link-exact-active {
+nav a , nav a.visible, .searchDropdown a, .aboutDropdown a{
   color: var(--color-text);
+  border: none;
+  text-decoration: none;
+  user-select: none;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.searchDropdown, .aboutDropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  border: none;
+  min-width: 10rem;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 2;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0.5rem;
 }
 
-nav a {
+nav a:hover, .aboutDropdown a:hover, .searchDropdown a:hover {
+  background-color: hsla(160, 100%, 37%, 0.2);
+  border-left: none;
+}
+
+nav a, .searchDropdown a, .aboutDropdown a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  border-left: none;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
 }
 
 nav a:first-of-type {
