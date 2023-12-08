@@ -29,4 +29,19 @@ coverage
 
 # Others
 .prettierrc.json
+/package-lock.json
 .eslintrc.cjs
+
+
+# gitignore
+/.gitignore
+
+
+# Configuration Files
+/.eslintrc.cjs
+/.prettierrc.json
+/vite.config.js
+/vitest.config.js
+
+# Build directory
+/dist/
