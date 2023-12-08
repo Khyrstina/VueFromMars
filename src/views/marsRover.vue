@@ -95,7 +95,7 @@ const handleNextPage = () => {
         class="button-shadow-border button-shadow"
         id="moreImages"
         @click="handleNextPage"
-        v-if="images"
+        v-if="images.length > 0"
       >
         More Images
       </button>
