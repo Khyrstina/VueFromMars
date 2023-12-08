@@ -7,7 +7,7 @@
   font-weight: normal;
 }
 
-a,
+/* a, */
 .green {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
@@ -15,7 +15,7 @@ a,
 }
 
 @media (hover: hover) {
-  a:hover {
+  a:hover, nav .navMenuItem a.toggleForNav:hover{
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
