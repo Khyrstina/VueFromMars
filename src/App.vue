@@ -35,7 +35,8 @@ const toggleDropdown = (arg) => {
       <div class="navMenuItem">
         <a class="toggleForNav" @click="toggleDropdown('about')" v-bind:class="{ showAboutDropdown }">Learn About A Rover</a>
         <div class="aboutDropdown" v-show="showAboutDropdown">
-            <RouterLink to="/about">Perseverance</RouterLink>
+            <RouterLink to="/about-Perseverance">Perseverance</RouterLink>
+            <RouterLink to="/about-Curiosity">Curiosity</RouterLink>
             </div>
       </div>
 
@@ -53,6 +54,10 @@ const toggleDropdown = (arg) => {
 </template>
 
 <style scoped>
+#app {
+  display: flex;
+  flex-direction: column;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -84,16 +89,17 @@ nav {
   z-index: 1;
   top: 0;
   left: 0;
+  align-self: center;
 }
 
 #titleString {
   position: absolute;
-  top: 20%;
-  font-size: 3.5rem;
+  font-size: 2rem;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   z-index: 1;
   text-align: center;
+  top: 15%;
 }
 
 #marsAnimation {
