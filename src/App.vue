@@ -33,10 +33,11 @@ const toggleDropdown = (arg) => {
             </div>
       </div>
       <div class="navMenuItem">
-        <a class="toggleForNav" @click="toggleDropdown('about')" v-bind:class="{ showAboutDropdown }">Learn About A Rover</a>
+        <a class="toggleForNav" @click="toggleDropdown('about')" v-bind:class="{ showAboutDropdown }">Learn More</a>
         <div class="aboutDropdown" v-show="showAboutDropdown">
-            <RouterLink to="/about-Perseverance">Perseverance</RouterLink>
-            <RouterLink to="/about-Curiosity">Curiosity</RouterLink>
+            <RouterLink to="/about-Perseverance">About Perseverance</RouterLink>
+            <RouterLink to="/about-Curiosity">About Curiosity</RouterLink>
+            <RouterLink to="/news">About NASA News</RouterLink>
             </div>
       </div>
 
@@ -99,7 +100,7 @@ nav {
   text-shadow: 2px 2px 4px #000000;
   z-index: 1;
   text-align: center;
-  top: 15%;
+  top: 18%;
 }
 
 #marsAnimation {
