@@ -34,6 +34,11 @@ const router = createRouter({
       name: 'curiosity',
       component: curiosityRover,
     },
+    {
+      path: '/news',
+      name: 'news',
+      component: () => import('../views/nasaNews.vue'),
+    },
   ],
 });
 
