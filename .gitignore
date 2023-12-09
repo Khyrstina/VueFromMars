@@ -34,7 +34,7 @@ coverage
 
 
 # gitignore
-/.gitignore
+.gitignore
 
 
 # Configuration Files
