@@ -33,11 +33,16 @@ onMounted(async () => {
 <template main>
   <div class="about">
     <h1>About Perseverance</h1>
-    <p>Perseverance is a car-sized Mars rover designed to explore the Jezero crater on Mars as part of NASA's Mars 2020 mission.
-       It was manufactured by the Jet Propulsion Laboratory and launched on 30 July 2020, at 11:50 UTC. 
-       Confirmation that the rover successfully landed on Mars was received on 18 February 2021 at 20:55 UTC.
-        The rover's goals include identifying past environments capable of supporting microbial life,
-         seeking out biosignatures of such life, and collecting rock and soil samples that could be returned to Earth by a future NASA mission.</p>
+    <p>Perseverance Rover, NASA's state-of-the-art envoy to the Martian frontier, 
+      stands as a technological marvel and a herald of scientific advancements. 
+      Launched in 2020, Perseverance transcends the conventional rover role, 
+      embodying a multifaceted robotic scientist on a quest to unearth clues of ancient life and gather samples for potential return to Earth. 
+      Equipped with a sophisticated array of instruments, including the groundbreaking helicopter named Ingenuity, 
+      the rover boasts capabilities to drill into Martian rocks, scrutinize their composition, and lay the groundwork for forthcoming human exploration. </p>
+    <p>Precision-landed in the Jezero Crater, a location believed to be an ancient river delta, 
+      Perseverance strategically positions itself to unravel the enigmatic history of Mars' potential habitability. 
+      With audacious objectives and a steadfast commitment to forging a path for future human endeavors, 
+      Perseverance encapsulates the unyielding spirit of human exploration, resilience, and an unwavering dedication to deciphering the cosmos' mysteries.</p>
     
          <iframe id="perseverance3D" src="https://mars.nasa.gov/gltf_embed/25042" width="100%" height="650px" scrolling="noscroll" frameborder="0" allowfullscreen />
     
