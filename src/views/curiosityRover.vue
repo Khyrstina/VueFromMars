@@ -106,5 +106,6 @@ const handleNextPage = () => {
 </template>
 
 <style>
-@import url(../assets/rover.css)
+@import url(../assets/rover.css);
+@import url(../assets/buttons.css);
 </style>
