@@ -40,9 +40,6 @@ const toggleDropdown = (arg) => {
             <RouterLink to="/news">About NASA News</RouterLink>
             </div>
       </div>
-
-<!--       <RouterLink to="/perseverance">Perseverance</RouterLink>
-      <RouterLink to="/about">About</RouterLink> -->
     </nav>
     <h1 id="titleString">Vue From Mars</h1>
   </header>
