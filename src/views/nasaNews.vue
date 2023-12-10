@@ -1,13 +1,16 @@
 <template>
 
-<h1 v-if="feed">{{feed.title}}</h1>
-<h2 v-if="feed">{{ feed.description }}</h2>
+<h1 class="newsHeaderText" v-if="feed">{{feed.title}}</h1>
+<h2 class="newsHeaderText" v-if="feed">{{ feed.description }}</h2>
 <div class="returnedItems">
     <div class="item" v-for="(item, index) of items" :key="index" > 
-        <div class="contentItem">
+    <div class="contentItem">
     <h3 class="newsTitle"> {{ item.title }}</h3>
-        <img :src="item.enclosure.link" alt="item.title" />
+            <h5> {{ item.pubDate }} </h5>
+        <img :src="item.enclosure.link" alt="item.title" @error="handleImageError" />
         <p class="description" v-html="extractText(item.description)"></p>
+        <button class="button-shadow-border button-shadow" v-on:click="goToLink(item.link)">Read More</button>
+        
 
 
 
@@ -48,7 +51,13 @@ export default {
         console.log(match ? match[1].trim() : '');
         return match ? match[1].trim() : '';
     },
+    goToLink(link) {
+        window.open(link, "_blank");
     },
+    handleImageError(event) {
+        event.target.src = "../src/assets/fourOhFour.png";
+    },
+},
     mounted() {
         this.getRss();
     },
@@ -57,13 +66,24 @@ export default {
 </script>
 
 <style scoped>
+@import url(../assets/buttons.css);
 
-.returnedItems {
+ div.item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: auto;
+}
+
+div.sectionView div.returnedItems div.contentItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
 }
 
 
@@ -86,6 +106,25 @@ export default {
     height: auto;
     margin: 10px;
     border-radius: 5px;
+}
+
+
+.newsHeaderText{
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90%;
+    height: auto;
+    align-self: center;
+}
+
+a .readMoreButton{
+    text-decoration: none;
 }
 
 </style>
