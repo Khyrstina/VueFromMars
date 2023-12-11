@@ -9,7 +9,7 @@ let recentDate = ref("");
 let totalPhotos = ref("");
 
 async function getPerserveranceInfo() {
-  const apiUrl = `https://mars-photos.herokuapp.com/api/v1/manifests/Perseverance`;
+  const apiUrl = `https://mars-photos.herokuapp.com/api/v1/manifests/curiosity`;
   let resp = await fetch(apiUrl);
   let data = await resp.json();
   console.log(apiUrl);
@@ -32,26 +32,25 @@ onMounted(async () => {
 
 <template main>
   <div class="about">
-    <h1>About Perseverance</h1>
-    <p>Perseverance Rover, NASA's state-of-the-art envoy to the Martian frontier, 
-      stands as a technological marvel and a herald of scientific advancements. 
-      Launched in 2020, Perseverance transcends the conventional rover role, 
-      embodying a multifaceted robotic scientist on a quest to unearth clues of ancient life and gather samples for potential return to Earth. 
-      Equipped with a sophisticated array of instruments, including the groundbreaking helicopter named Ingenuity, 
-      the rover boasts capabilities to drill into Martian rocks, scrutinize their composition, and lay the groundwork for forthcoming human exploration. </p>
-    <p>Precision-landed in the Jezero Crater, a location believed to be an ancient river delta, 
-      Perseverance strategically positions itself to unravel the enigmatic history of Mars' potential habitability. 
-      With audacious objectives and a steadfast commitment to forging a path for future human endeavors, 
-      Perseverance encapsulates the unyielding spirit of human exploration, resilience, and an unwavering dedication to deciphering the cosmos' mysteries.</p>
+    <h1>About Curiosity</h1>
+    <p>The Curiosity Rover, NASA's intrepid explorer on the Martian surface, stands as a testament to human ingenuity and curiosity. 
+        Launched in 2011, this car-sized robotic geologist was designed for a two-year mission to investigate Mars' Gale Crater. 
+        However, its tenacity and durability have defied expectations, as it continues to roam the Red Planet's rugged terrain, uncovering mysteries and sending back invaluable data. </p>
+        <p>Armed with a sophisticated suite of instruments, including a laser that can vaporize rocks and analyze their composition, 
+        Curiosity has made groundbreaking discoveries, such as evidence of ancient water flow and the building blocks of life. 
+        Beyond its scientific triumphs, the rover has captured the world's imagination, transforming the quest for knowledge into a shared human journey, 
+        where every new image or finding sparks collective wonder and awe. Curiosity embodies the indomitable spirit of exploration, 
+        pushing the boundaries of what we know about the universe beyond our own blue planet.
+    </p>
     
-         <iframe id="perseverance3D" src="https://mars.nasa.gov/gltf_embed/25042" width="100%" height="650px" scrolling="noscroll" frameborder="0" allowfullscreen />
+         <iframe id="curiosity3D" src="https://mars.nasa.gov/gltf_embed/24584" width="100%" height="650px" scrolling="noscroll" frameborder="0" allowfullscreen />
     
-         <div id="perseveranceBox">
+         <div id="curiosityBox">
       <h2>Stats for this Rover:</h2>
       <table id="roverTable">
         <tr>
           <th>Stats:</th>
-          <th>Perseverance:</th>
+          <th>Curiosity:</th>
         </tr>
         <tr>
           <td>Landing Date:</td>
@@ -98,7 +97,7 @@ onMounted(async () => {
   margin: 1rem;
 }
 
-#perseveranceBox {
+#curiosityBox {
  display: flex;
  flex-direction: column;
  justify-content: center;
@@ -115,11 +114,11 @@ onMounted(async () => {
  width: 90%;
 }
 
-#perseveranceBox h2, #perseveranceBox table > tr > th {
+#curiosityBox h2, #curiosityBox table > tr > th {
   text-align: center;
 }
 
-#perseverance3D {
+#curiosity3D {
   width: 100%;
   height: 450px;
   border-radius: 10px;
@@ -138,7 +137,7 @@ onMounted(async () => {
   padding: 1rem;
 }
 
-#perseveranceStats {
+#curiosityStats {
   display: flex;
   justify-content: center;
   align-items: center;

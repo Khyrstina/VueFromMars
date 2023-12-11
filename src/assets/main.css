@@ -5,6 +5,9 @@
   max-width: 100%;
   margin: 0;
   font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* a, */
@@ -12,6 +15,10 @@
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
+}
+
+.navMenuItem {
+  text-align: center;
 }
 
 @media (hover: hover) {
@@ -26,9 +33,19 @@
     place-items: center;
   }
 
+  #titleString {
+    font-size: 3.5rem;
+    top: 20%;
+  }
+
   #app {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+
+/*     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    padding: 0 2rem; */
   }
 }
