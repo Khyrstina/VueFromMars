@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 
 const earthDaysText = ref('');
+const rangeInImagesText = ref('');
 const date = ref(new Date());
 const minDate = computed(() => new Date(2012, 7, 6)); // 08/06/2012 Curiosity Landing Date
 const maxDate = computed(() => new Date()); // Today's date
@@ -11,8 +12,9 @@ let correctDate = '';
 let displayDate = '';
 let numPhotosTaken = 0;
 let targetSol = 0;
+let nextButtonCounter = 0;
 
-const getPerserveranceImages = async (date) => {
+const getCuriosityImages = async (date) => {
   const apiUrl = `https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?earth_date=${date}&page=${pageNumber}`;
   const resp = await fetch(apiUrl);
   const data = await resp.json();
@@ -25,8 +27,7 @@ const dateCorrection = (date) => {
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const day = date.getDate().toString().padStart(2, '0');
   const year = date.getFullYear().toString();
-  const correctedDate = `${year}-${month}-${day}`;
-  correctDate = correctedDate;
+  correctDate = `${year}-${month}-${day}`;
   displayDate = `${month}/${day}/${year}`;
 };
 
@@ -41,6 +42,7 @@ const getEarthDaysSinceLanding = async () => {
     console.log('found index for sol');
     numPhotosTaken = data.photo_manifest.photos[index].total_photos;
     earthDaysText.value = `Curiosity took ${numPhotosTaken} photos on ${displayDate}.`;
+    rangeInImagesText.value = `Showing images ${nextButtonCounter + 1 }-${nextButtonCounter + 26} of ${numPhotosTaken}.`;
     console.log(earthDaysText.value);
   } else {
     console.log('index not found');
@@ -50,7 +52,7 @@ const getEarthDaysSinceLanding = async () => {
 
 const handleSearchImages = async () => {
   dateCorrection(date.value);
-  await getPerserveranceImages(correctDate);
+  await getCuriosityImages(correctDate);
   if (images.value && images.value.length > 0) {
     targetSol = images.value[0].sol;
     await getEarthDaysSinceLanding();
@@ -66,7 +68,7 @@ const handleNextPage = () => {
 
 </script>
 
-<template main>
+<template>
   <section class="curiosityWrapper">
     <div class="searchSection">
       <div id="datePickerWrapper">
@@ -84,6 +86,7 @@ const handleNextPage = () => {
         Search Images
       </button>
       <h2 v-if="earthDaysText" id="h2SearchInfoText"> {{ earthDaysText }}</h2>
+      <h3 v-if="earthDaysText" id="rangeInImagesDisplayed"> {{ rangeInImagesText }}</h3>
       <div id="images">
         <img
           v-for="image in images"
@@ -91,6 +94,7 @@ const handleNextPage = () => {
           :src="image.img_src"
           :title="'Taken on sol #' + image.sol"
           class="curiosityImage"
+          alt="./assets/fourOhFour.png"
         />
       </div>
       <button

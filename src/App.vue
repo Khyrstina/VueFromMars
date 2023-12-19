@@ -26,7 +26,7 @@ const toggleDropdown = (arg) => {
     <nav>
       <div class="navMenuItem"><RouterLink to="/">Home</RouterLink></div>
       <div class="navMenuItem">
-        <a class="toggleForNav" style="text" @click="toggleDropdown('search')" v-bind:class="{ showSearchDropdown }">Search Rover Images</a>
+        <a class="toggleForNav" @click="toggleDropdown('search')" v-bind:class="{ showSearchDropdown }">Search Rover Images</a>
         <div class="searchDropdown" v-show="showSearchDropdown">
             <RouterLink to="/perseverance">Perseverance</RouterLink>
             <RouterLink to="/curiosity">Curiosity</RouterLink>

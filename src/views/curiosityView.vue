@@ -8,7 +8,7 @@ let currentSol = ref("");
 let recentDate = ref("");
 let totalPhotos = ref("");
 
-async function getPerserveranceInfo() {
+async function getCuriosityInfo() {
   const apiUrl = `https://mars-photos.herokuapp.com/api/v1/manifests/curiosity`;
   let resp = await fetch(apiUrl);
   let data = await resp.json();
@@ -26,11 +26,11 @@ async function getPerserveranceInfo() {
 }
 
 onMounted(async () => {
-  await getPerserveranceInfo();
+  await getCuriosityInfo();
 });
 </script>
 
-<template main>
+<template >
   <div class="about">
     <h1>About Curiosity</h1>
     <p>The Curiosity Rover, NASA's intrepid explorer on the Martian surface, stands as a testament to human ingenuity and curiosity. 
@@ -43,7 +43,7 @@ onMounted(async () => {
         pushing the boundaries of what we know about the universe beyond our own blue planet.
     </p>
     
-         <iframe id="curiosity3D" src="https://mars.nasa.gov/gltf_embed/24584" width="100%" height="650px" scrolling="noscroll" frameborder="0" allowfullscreen />
+         <iframe id="curiosity3D" src="https://mars.nasa.gov/gltf_embed/24584" width="100%" height="650px" scrolling="no-scroll" frameborder="0" allowfullscreen />
     
          <div id="curiosityBox">
       <h2>Stats for this Rover:</h2>
@@ -137,14 +137,14 @@ onMounted(async () => {
   padding: 1rem;
 }
 
-#curiosityStats {
+/*#curiosityStats {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
   height: 100%;
-}
+}*/
 
 @media (min-width: 1024px) {
   .about {
