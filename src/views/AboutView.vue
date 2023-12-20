@@ -8,7 +8,7 @@ let currentSol = ref("");
 let recentDate = ref("");
 let totalPhotos = ref("");
 
-async function getPerserveranceInfo() {
+async function getPerseveranceInfo() {
   const apiUrl = `https://mars-photos.herokuapp.com/api/v1/manifests/Perseverance`;
   let resp = await fetch(apiUrl);
   let data = await resp.json();
@@ -26,7 +26,7 @@ async function getPerserveranceInfo() {
 }
 
 onMounted(async () => {
-  await getPerserveranceInfo();
+  await getPerseveranceInfo();
 });
 </script>
 
@@ -90,8 +90,7 @@ onMounted(async () => {
   justify-content: space-evenly;
   width: 90%;
   margin: 1rem;
-  background-image: url(../assets/starryOverlay.png);
-  background-size: 3rem 3rem;
+  background-color: #000609;
 }
 
 .about > * {
