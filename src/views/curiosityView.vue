@@ -89,8 +89,7 @@ onMounted(async () => {
   justify-content: space-evenly;
   width: 90%;
   margin: 1rem;
-  background-image: url(../assets/starryOverlay.png);
-  background-size: 3rem 3rem;
+  background-color: #000609;
 }
 
 .about > * {
