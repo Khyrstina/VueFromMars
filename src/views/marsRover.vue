@@ -13,6 +13,7 @@ let displayDate = '';
 let numPhotosTaken = 0;
 let targetSol = 0;
 let nextButtonCounter = 0;
+let maxPages = 0;
 
 const getPerseveranceImages = async (date) => {
   const apiUrl = `https://mars-photos.herokuapp.com/api/v1/rovers/Perseverance/photos?earth_date=${date}&page=${pageNumber}`;
@@ -41,14 +42,14 @@ const getEarthDaysSinceLanding = async () => {
   if (index !== -1) {
     console.log('found index for sol');
     numPhotosTaken = data.photo_manifest.photos[index].total_photos;
+    maxPages = Math.ceil(numPhotosTaken / 25);
     earthDaysText.value = `Perseverance took ${numPhotosTaken} photos on ${displayDate}.`;
-    rangeInImagesText.value = `Showing images ${nextButtonCounter +1}-${nextButtonCounter + 26} of ${numPhotosTaken}.`;
+    rangeInImagesText.value = `Showing page ${nextButtonCounter +1} of ${maxPages}.`;
 
     console.log(earthDaysText.value);
   } else {
     console.log('index not found');
     earthDaysText.value = `Perseverance took 0 photos on ${displayDate}.`;
-    rangeInImagesText.value = 'Showing 0 of 0 images';
   }
 };
 
@@ -65,8 +66,14 @@ const handleSearchImages = async () => {
 
 const handleNextPage = () => {
   pageNumber++;
+  nextButtonCounter ++;
   handleSearchImages();
 };
+
+const resetSearch = () => {
+  nextButtonCounter = 0;
+  handleSearchImages();
+}
 
 </script>
 
@@ -84,7 +91,7 @@ const handleNextPage = () => {
           v-model="date"
         />
       </div>
-      <button class="button-shadow-border button-shadow" @click="handleSearchImages">
+      <button class="button-shadow-border button-shadow" @click="resetSearch">
         Search Images
       </button>
       <h2 v-if="earthDaysText" id="h2SearchInfoText"> {{ earthDaysText }}</h2>
@@ -100,11 +107,10 @@ const handleNextPage = () => {
         />
       </div>
       <button
-          v-if="images.length > 0"
+          v-if="nextButtonCounter < maxPages"
           id="moreImages"
           class="button-shadow-border button-shadow"
-          @click="handleNextPage;
-         nextButtonCounter++"
+          @click="handleNextPage"
       >
         More Images
       </button>
